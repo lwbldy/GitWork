@@ -37,9 +37,14 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lwbldy.mbg.mapper"
                              targetProject="lwb-admin-tiny\src\main\java"/>
         <!--生成全部表tableName设为%,如果是单个表写单个表的名称-->
-        <table tableName="sys_user">
-            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
+
+        <table tableName="pms_product_category">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+
+        <!--<table tableName="sys_user">-->
+            <!--<generatedKey column="user_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="%">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->

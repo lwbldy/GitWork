@@ -1,0 +1,45 @@
+package ${package}.service;
+
+import com.lwbldy.mbg.model.${className};
+import java.util.List;
+
+/**
+ * ${comments} service
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+
+    /**
+    * 保存
+    * @return
+    */
+    int save(${className} ${classname});
+
+    /**
+     * 更新
+     * @return
+     */
+    int edit(${className} ${classname});
+
+    /**
+     * 根据主键查询
+     * @return
+     */
+     ${className} queryByPrimaryKey(${pk.attrType} ${pk.attrname});
+
+    /**
+     * 根据分页查询
+     * @return
+     */
+    List<${className}> listBrand(int pageNum, int pageSize);
+
+    /**
+     * 根据ID删除
+     * @param id
+     * @return
+     */
+    int delete(${pk.attrType} ${pk.attrname});
+
+}

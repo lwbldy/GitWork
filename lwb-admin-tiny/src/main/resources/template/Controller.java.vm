@@ -1,0 +1,102 @@
+package ${package}.controller;
+
+import com.lwbldy.common.util.PageUtils;
+import com.lwbldy.common.util.R;
+import ${package}.service.${className}Service;
+import com.lwbldy.mbg.model.${className};
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@Controller
+@Api(tags = "${comments}")
+@RequestMapping("/${modelName}/${classname}")
+public class ${className}Controller {
+
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    @ApiOperation(value = "显示列表界面")
+    @GetMapping("/list")
+    @RequiresPermissions("${classname}:list")
+    public String list(){
+        return "/${modelName}/${classname}/list";
+    }
+
+    @ApiOperation(value = "分页查询列表")
+    @PostMapping("/list")
+    @RequiresPermissions("${classname}:list")
+    @ResponseBody
+    public R list(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                  @RequestParam(value = "limit", defaultValue = "15") Integer limit){
+        List<${className}> brandList = ${classname}Service.listBrand(page,limit);
+        return PageUtils.restPage(brandList);
+    }
+
+    @ApiOperation(value = "查询用户信息")
+    @GetMapping("/info/{${pk.attrname}}")
+    @RequiresPermissions("${classname}:info")
+    @ResponseBody
+    public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
+        ${className} entity = ${classname}Service.queryByPrimaryKey(${pk.attrname});
+        return R.ok(entity);
+    }
+
+    @ApiOperation(value = "保存信息界面")
+    @GetMapping("/save")
+    @RequiresPermissions("${classname}:save")
+    public String save(ModelMap map){
+        return "/${modelName}/${classname}/save";
+    }
+
+    @ApiOperation(value = "保存信息")
+    @PostMapping("/save")
+    @RequiresPermissions("${classname}:save")
+    @ResponseBody
+    public R save(${className} entity){
+        if(${classname}Service.save(entity) == 1){
+            return R.ok();
+        }else
+            return R.error();
+    }
+
+    @ApiOperation(value = "修改信息界面")
+    @GetMapping("/edit/{${pk.attrname}}")
+    @RequiresPermissions("${classname}:edit")
+    public String update(@PathVariable("${pk.attrname}")${pk.attrType} ${pk.attrname},ModelMap map){
+        map.put("id",${pk.attrname});
+        return "/${modelName}/${classname}/edit";
+    }
+
+    @ApiOperation(value = "修改信息")
+    @PostMapping("/edit")
+    @RequiresPermissions("${classname}:edit")
+    @ResponseBody
+    public R edit(${className} entity){
+        if(${classname}Service.edit(entity) == 1){
+            return R.ok();
+        }else
+            return R.error();
+    }
+
+    @ApiOperation(value = "删除")
+    @GetMapping("/delete/{id}")
+    @RequiresPermissions("${classname}:delete")
+    @ResponseBody
+    public R delete(@PathVariable("${pk.attrname}")${pk.attrType} ${pk.attrname}){
+        int r = ${classname}Service.delete(id);
+        if(r != 0){
+            return R.ok();
+        }else{
+            return R.error();
+        }
+    }
+
+}

@@ -1,0 +1,46 @@
+package ${package}.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.lwbldy.mbg.mapper.${className}Mapper;
+import com.lwbldy.mbg.model.${className};
+import com.lwbldy.mbg.model.${className}Example;
+import ${package}.service.${className}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+
+    @Autowired
+	${className}Mapper ${classname}Mapper;
+
+    @Override
+    public int save(${className} ${classname}) {
+        return ${classname}Mapper.insert(${classname});
+    }
+
+    @Override
+    public int edit(${className} ${classname}) {
+        return ${classname}Mapper.updateByPrimaryKey(${classname});
+    }
+
+    @Override
+    public ${className} queryByPrimaryKey(${pk.attrType} ${pk.attrname}) {
+        return ${classname}Mapper.selectByPrimaryKey(${pk.attrname});
+    }
+
+    @Override
+    public List<${className}> listBrand(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+		${className}Example example = new ${className}Example();
+        example.setOrderByClause("${pk.attrname} desc");
+        return ${classname}Mapper.selectByExample(example);
+    }
+
+    @Override
+    public int delete(${pk.attrType} ${pk.attrname}) {
+        return ${classname}Mapper.deleteByPrimaryKey(${pk.attrname});
+    }
+}
