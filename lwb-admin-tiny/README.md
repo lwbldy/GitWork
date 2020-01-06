@@ -1,9 +1,9 @@
 一个简单后台管理
 
-![login](.\document\resource\login.jpg)
+![login](./document/resource/login.jpg)
 
 
-![admin_index](.\document\resource\admin_index.jpg)
+![admin_index](./document/resource/admin_index.jpg)
 
 
 ![admin_menu](.\document\resource\admin_menu.jpg)
