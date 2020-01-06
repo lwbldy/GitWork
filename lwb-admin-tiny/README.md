@@ -6,14 +6,14 @@
 ![admin_index](./document/resource/admin_index.jpg)
 
 
-![admin_menu](.\document\resource\admin_menu.jpg)
+![admin_menu](./document/resource/admin_menu.jpg)
 
 
-![admin_menu_save](.\document\resource\admin_menu_save.jpg)
+![admin_menu_save](./document/resource/admin_menu_save.jpg)
 
-![admin_role_save](.\document\resource\admin_role_save.jpg)
+![admin_role_save](./document/resource/admin_role_save.jpg)
 
-![admin_gen](.\document\resource\admin_gen.jpg)
+![admin_gen](./document/resource/admin_gen.jpg)
 
 
 
