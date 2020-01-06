@@ -41,6 +41,20 @@ public class PageUtils<T> {
     }
 
     /**
+     *
+     * @param list
+     * @param count
+     * @param <T>
+     * @return
+     */
+    public static <T> R restPage(List<T> list,int count){
+        R r = new R();
+        r.put("count",count);
+        r.put("data",list);
+        return r;
+    }
+
+    /**
      * 将SpringData分页后的list转为分页信息
      */
     public static <T> PageUtils<T> restPage(Page<T> pageInfo) {

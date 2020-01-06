@@ -38,7 +38,7 @@
                              targetProject="lwb-admin-tiny\src\main\java"/>
         <!--生成全部表tableName设为%,如果是单个表写单个表的名称-->
 
-        <table tableName="pms_product_category">
+        <table tableName="pms_brand">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 

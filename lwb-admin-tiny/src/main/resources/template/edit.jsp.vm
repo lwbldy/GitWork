@@ -9,17 +9,19 @@
 <div style="padding: 20px">
     <form class="layui-form layui-form-pane" action="" id="ajaxForm">
 #foreach($column in $columns)
+#if($column.isFormShow == 'true' || !$column.isFormShow)
         <div class="layui-form-item">
             <label class="layui-form-label">${column.comments}</label>
             <div class="layui-input-inline">
-                <input type="text" id="${column.attrname}" name="${column.attrname}" required="" lay-verify="required" class="layui-input" autocomplete="off">
+                <input type="text" id="${column.attrname}" name="${column.attrname}" required="" #if($column.isFormShow == 'NO')lay-verify="required"#end class="layui-input" autocomplete="off">
             </div>
-            <div class="layui-form-mid layui-word-aux">请务必填写${column.comments}</div>
+            <div class="layui-form-mid layui-word-aux">
+#if($column.isNullable == 'NO')请务必填写${column.comments}#end
+            </div>
         </div>
 #end
-
+#end
         <input type="hidden" name="${pk.attrname}" id="${pk.attrname}">
-
         <div class="layui-form-item">
             <div class="layui-input-inline">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="save">立即提交</button>
@@ -39,7 +41,7 @@
             //提交数据
             $("#ajaxForm").ajaxSubmit({
                 type : 'post',
-                url : "<%=request.getContextPath()%>/${modelName}/${classname}/save",
+                url : "<%=request.getContextPath()%>/${modelName}/${classname}/edit",
                 dataType:'json',
                 //data:  //注意只要是写在表单里面的，都不需要加这个属性。在controller中可以根据@RequestParam String str获取到属性值。
                 //contentType : "application/x-www-form-urlencoded; charset=utf-8",

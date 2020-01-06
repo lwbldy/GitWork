@@ -7,7 +7,9 @@ import com.lwbldy.mbg.model.${className}Example;
 import ${package}.service.${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import java.util.List;
+
 
 
 @Service("${classname}Service")
@@ -32,9 +34,21 @@ public class ${className}ServiceImpl implements ${className}Service {
     }
 
     @Override
-    public List<${className}> listBrand(int pageNum, int pageSize) {
+    public List<${className}> listBrand(#foreach ($column in $columns)#if($column.isQuery == 'YES')$column.attrType $column.attrname,#end#end int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
 		${className}Example example = new ${className}Example();
+        ${className}Example.Criteria criteria = example.createCriteria();
+#foreach ($column in $columns)#if($column.isQuery == 'YES')#if($column.columnQuery == '=')
+        if(!StringUtils.isEmpty(${column.attrname})){
+            criteria.and${column.attrName}EqualTo(${column.attrname});
+        }
+#end
+#if(!$column.columnQuery || $column.columnQuery == 'like')
+        if(!StringUtils.isEmpty(${column.attrname})){
+            criteria.and${column.attrName}Like("%" + ${column.attrname} + "%");
+        }
+#end
+#end#end
         example.setOrderByClause("${pk.attrname} desc");
         return ${classname}Mapper.selectByExample(example);
     }

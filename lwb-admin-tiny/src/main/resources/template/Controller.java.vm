@@ -27,16 +27,21 @@ public class ${className}Controller {
     @GetMapping("/list")
     @RequiresPermissions("${classname}:list")
     public String list(){
-        return "/${modelName}/${classname}/list";
+        return "/${modelName}/${pathName}/list";
     }
 
     @ApiOperation(value = "分页查询列表")
     @PostMapping("/list")
     @RequiresPermissions("${classname}:list")
     @ResponseBody
-    public R list(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                  @RequestParam(value = "limit", defaultValue = "15") Integer limit){
-        List<${className}> brandList = ${classname}Service.listBrand(page,limit);
+    public R list(
+
+        #foreach ($column in $columns)#if($column.isQuery == 'YES')
+            @RequestParam(value = "$column.attrname", defaultValue = "") $column.attrType $column.attrname,
+        #end#end
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "limit", defaultValue = "15") Integer limit){
+        List<${className}> brandList = ${classname}Service.listBrand(#foreach ($column in $columns)#if($column.isQuery == 'YES')$column.attrname,#end#end page,limit);
         return PageUtils.restPage(brandList);
     }
 
@@ -53,7 +58,7 @@ public class ${className}Controller {
     @GetMapping("/save")
     @RequiresPermissions("${classname}:save")
     public String save(ModelMap map){
-        return "/${modelName}/${classname}/save";
+        return "/${modelName}/${pathName}/save";
     }
 
     @ApiOperation(value = "保存信息")
@@ -72,7 +77,7 @@ public class ${className}Controller {
     @RequiresPermissions("${classname}:edit")
     public String update(@PathVariable("${pk.attrname}")${pk.attrType} ${pk.attrname},ModelMap map){
         map.put("id",${pk.attrname});
-        return "/${modelName}/${classname}/edit";
+        return "/${modelName}/${pathName}/edit";
     }
 
     @ApiOperation(value = "修改信息")

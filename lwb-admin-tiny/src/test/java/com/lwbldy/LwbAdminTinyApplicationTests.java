@@ -19,17 +19,17 @@ class LwbAdminTinyApplicationTests {
 	@Test
 	void contextLoads()  throws IOException {
 
-		String[] tables = {"pms_product_category"};
-		String packageName = "com.lwbldy.mall";
-		String author = "lwbldy";
-		String email = "lwbldy@163.com";
-		String tablePrefix = null;
-		String modelName = "mall";
-
-		byte[] bytes = sysGeneratorService.generatorCode(tables,packageName,author,email,tablePrefix, modelName);
-//        sysGeneratorService.generatorCode(tables,packageName);
-		OutputStream out = new FileOutputStream("d:\\test.zip");
-		IOUtils.write(bytes,out);
+//		String[] tables = {"pms_product_category"};
+//		String packageName = "com.lwbldy.mall";
+//		String author = "lwbldy";
+//		String email = "lwbldy@163.com";
+//		String tablePrefix = null;
+//		String modelName = "mall";
+//
+//		byte[] bytes = sysGeneratorService.generatorCode(tables,packageName,author,email,tablePrefix, modelName);
+////        sysGeneratorService.generatorCode(tables,packageName);
+//		OutputStream out = new FileOutputStream("d:\\test.zip");
+//		IOUtils.write(bytes,out);
 	}
 
 }

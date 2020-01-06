@@ -33,7 +33,8 @@ public interface ${className}Service {
      * 根据分页查询
      * @return
      */
-    List<${className}> listBrand(int pageNum, int pageSize);
+    List<${className}> listBrand(#foreach ($column in $columns)#if($column.isQuery == 'YES')$column.attrType $column.attrname,#end#end int pageNum, int pageSize);
+
 
     /**
      * 根据ID删除
