@@ -56,7 +56,7 @@
             method:'post',
             cols: [[ //表头
 #foreach($column in $columns)#if($column.isMenuShow == 'true' || !$column.isMenuShow)
-{field: '${column.attrname}', title: '${column.comments}'},
+                {field: '${column.attrname}', title: '${column.comments}'},
 #end
 #end
                 {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}

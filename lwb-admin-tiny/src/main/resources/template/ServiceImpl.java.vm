@@ -25,7 +25,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 
     @Override
     public int edit(${className} ${classname}) {
-        return ${classname}Mapper.updateByPrimaryKey(${classname});
+        return ${classname}Mapper.updateByPrimaryKeySelective(${classname});
     }
 
     @Override

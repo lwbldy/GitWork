@@ -35,10 +35,9 @@ public class ${className}Controller {
     @RequiresPermissions("${classname}:list")
     @ResponseBody
     public R list(
-
-        #foreach ($column in $columns)#if($column.isQuery == 'YES')
+#foreach ($column in $columns)#if($column.isQuery == 'YES')
             @RequestParam(value = "$column.attrname", defaultValue = "") $column.attrType $column.attrname,
-        #end#end
+#end#end
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "limit", defaultValue = "15") Integer limit){
         List<${className}> brandList = ${classname}Service.listBrand(#foreach ($column in $columns)#if($column.isQuery == 'YES')$column.attrname,#end#end page,limit);
